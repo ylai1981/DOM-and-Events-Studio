@@ -8,6 +8,24 @@ window.onload = function() {
     const button3 = document.getElementById("missionAbort");
     const img = document.getElementById("rocket");
     var height = 10000;
+
+    function shuttleChanges (id){
+        
+        switch(id) {
+            case id = "takeoff":
+                document.getElementById("shuttleBackground").style.backgroundColor = "blue";
+                document.getElementById("spaceShuttleHeight").innerHTML = height;
+                break;
+            case id = "landing":
+                document.getElementById("shuttleBackground").style.backgroundColor = "green";
+                document.getElementById("spaceShuttleHeight").innerHTML = height - 10000;
+                break;
+            case id = "missionAbort":
+                document.getElementById("shuttleBackground").style.backgroundColor = "green";
+                document.getElementById("spaceShuttleHeight").innerHTML = height - 10000;
+                break;
+        }
+    }
     
 
     button1.addEventListener("click", function(){
@@ -15,8 +33,8 @@ window.onload = function() {
     
         if(readyLaunch == true){
             document.getElementById("flightStatus").innerHTML = "Shuttle in flight.";
-            document.getElementById("shuttleBackground").style.backgroundColor = "blue";
-            document.getElementById("spaceShuttleHeight").innerHTML = 10000;
+            id="takeoff";
+            shuttleChanges(id);
         }
     });
 
@@ -24,9 +42,8 @@ window.onload = function() {
         alert("The shuttle is landing. Landing gear engaged.");
 
         document.getElementById("flightStatus").innerHTML = "The shuttle has landed.";
-        document.getElementById("shuttleBackground").style.backgroundColor = "green";
-        document.getElementById("spaceShuttleHeight").innerHTML = 0;
-               
+         id = "landing";
+         shuttleChanges(id);     
     });
 
     button3.addEventListener("click", function(){
@@ -34,8 +51,8 @@ window.onload = function() {
 
         if(abort == true){
             document.getElementById("flightStatus").innerHTML = "Mission aborted.";
-            document.getElementById("shuttleBackground").style.backgroundColor = "green";
-            document.getElementById("spaceShuttleHeight").innerHTML = 0;
+            id="missionAbort"
+            shuttleChanges(id);
         }
     });
 
